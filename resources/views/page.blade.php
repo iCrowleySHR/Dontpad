@@ -33,43 +33,6 @@
     <p class="status" id="status"></p>
 
     @vite('resources/js/app.js')
-    <script type="module">
-        const textarea = document.getElementById('content');
-        const status = document.getElementById('status');
-        let timeout = null;
-        const userId = crypto.randomUUID();
-
-        window.Echo.channel(`page-updated.{{ $page->slug }}`)
-            .listen('PageUpdated', (event) => {
-                if (event.slug === '{{ $page->slug }}' && event.userId !== userId) {
-                    textarea.value = event.content;
-                    status.textContent = 'Conteúdo atualizado em tempo real!';
-                }
-            });
-
-        const sendUpdate = () => {
-            status.textContent = 'Salvando...';
-
-            fetch(`/${'{{ $page->slug }}'}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ content: textarea.value, userId: userId })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    status.textContent = data.message;
-                });
-        };
-
-
-        textarea.addEventListener('input', () => {
-            clearTimeout(timeout);
-            timeout = setTimeout(sendUpdate, 500);
-        });
-    </script>
 </body>
 
 </html>
