@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Events\PageUpdated;
+use App\Models\Pages;
+use Illuminate\Http\Request;
+
+class PageController extends Controller
+{
+    public function show($slug)
+    {
+        $page = Pages::firstOrCreate(['slug' => $slug]);
+
+        return view('page', compact('page'));
+    }
+
+    public function update(Request $request, $slug)
+    {
+        $page = Pages::where('slug', $slug)->firstOrFail();
+        $page->content = $request->input('content');
+        $page->save();
+        
+        broadcast(new PageUpdated($page, $request->input('userId')));
+
+        return response()->json(['message' => 'Conteúdo salvo!'], 200);
+    }
+}
