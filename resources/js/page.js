@@ -9,6 +9,7 @@ export function initializePage() {
         .listen('PageUpdated', (event) => {
             if (event.slug === slug && event.userId !== userId) {
                 textarea.value = event.content;
+                adjustHeight(textarea);
                 status.textContent = 'Conteúdo atualizado em tempo real!';
             }
         });
