@@ -13,6 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+        $middleware->alias([
+            'verify.referer' => \App\Http\Middleware\VerifyReferer::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
