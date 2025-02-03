@@ -24,10 +24,15 @@ input.addEventListener('input', function() {
                     input.classList.add('focus:ring-blue-500');
                     btn.classList.remove('bg-green-500');
                     btn.classList.add('bg-blue-500');
+                    btn.classList.remove('hover:bg-green-600');
+                    btn.classList.add('hover:bg-blue-600');
+
                 } else {
                     btn.textContent = 'Create';
                     btn.classList.remove('bg-blue-500');
                     btn.classList.add('bg-green-500');
+                    btn.classList.remove('hover:bg-blue-600');
+                    btn.classList.add('hover:bg-green-600');
                     input.classList.remove('focus:ring-blue-500');
                     input.classList.add('focus:ring-green-500');
 
@@ -45,6 +50,8 @@ input.addEventListener('input', function() {
         btn.classList.add('bg-blue-500');
         input.classList.remove('focus:ring-green-500');
         input.classList.add('focus:ring-blue-500');
+        btn.classList.remove('hover:bg-green-600');
+        btn.classList.add('hover:bg-blue-600');
     }
 });
 

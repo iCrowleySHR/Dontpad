@@ -11,12 +11,12 @@ window.Echo.channel(`page-updated.${slug}`)
         if (event.slug === slug && event.userId !== userId) {
             textarea.value = event.content;
             adjustHeight(textarea);
-            status.textContent = 'Conteúdo atualizado em tempo real!';
+            status.textContent = 'Content updated in real time!';
         }
     });
 
 const sendUpdate = () => {
-    status.textContent = 'Salvando...';
+    status.textContent = 'Saving...';
 
     fetch(`/${slug}`, {
         method: 'POST',
