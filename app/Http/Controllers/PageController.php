@@ -25,4 +25,16 @@ class PageController extends Controller
 
         return response()->json(['message' => 'Conteúdo salvo!'], 200);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $results = Pages::where('slug', 'like', "%{$query}%")
+                        ->whereNotNull('content')
+                        ->limit(10)
+                        ->pluck('slug');
+
+        return response()->json($results);
+    }
 }
