@@ -7,7 +7,7 @@ input.addEventListener('input', function() {
     const suggestions = document.getElementById('suggestions');
 
     if (query.length >= 1) {
-        axios.get("/search", { params: { query } })
+        axios.get("/xnd-wcvw-fyd", { params: { query } })
             .then(response => {
                 if (response.data.length > 0) {
                     suggestions.innerHTML = response.data.map(page => `
