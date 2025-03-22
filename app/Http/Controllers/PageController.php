@@ -23,6 +23,7 @@ class PageController extends Controller
         
         broadcast(new PageUpdated($page, $request->input('userId')));
 
+
         return response()->json(['message' => 'Content saved!'], 200);
     }
 

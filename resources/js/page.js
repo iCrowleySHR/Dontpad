@@ -30,6 +30,7 @@ const sendUpdate = () => {
         .then(data => {
             status.textContent = data.message;
         });
+        
 };
 
 adjustHeight(textarea);
